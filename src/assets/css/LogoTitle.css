@@ -1,0 +1,15 @@
+.logo-title__wrapper {
+  display: flex;
+  flex-direction: column;
+  color: var(--tertiary-color);
+}
+
+.logo-title__wrapper svg {
+  margin: auto;
+  color: inherit;
+}
+
+.logo-title__wrapper h1 {
+  margin: -10px auto 0;
+  display: inline-block;
+}
