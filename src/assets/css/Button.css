@@ -1,0 +1,27 @@
+.button__wrapper {
+  cursor: pointer;
+  border-radius: 10px;
+  border: solid 1px;
+  border-color: var(--button-color);
+  padding: 7px 20px;
+}
+
+.button__wrapper.primary {
+  --button-color: var(--primary-color);
+}
+.button__wrapper.secondary {
+  --button-color: var(--secondary-color);
+}
+.button__wrapper.tertiary {
+  --button-color: var(--tertiary-color);
+}
+
+.button__wrapper.stroke {
+  background-color: white;
+  color: var(--button-color);
+}
+
+.button__wrapper.fill {
+  background-color: var(--button-color);
+  color: white;
+}
