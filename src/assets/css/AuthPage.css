@@ -1,0 +1,11 @@
+.auth-page__wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--background-color);
+  height: 100vh;
+}
+.auth-page__wrapper .logo-title__wrapper {
+  margin-bottom: 20px;
+}
