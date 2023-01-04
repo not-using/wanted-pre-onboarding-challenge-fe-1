@@ -1,16 +1,17 @@
-import React from "react";
-
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import TokenProvider from "./contexts/TokenProvider";
 import Header from "./components/Header";
 import WelcomePage from "./pages/WelcomePage";
 
 const App = () => {
   return (
     <BrowserRouter>
-      <Header />
-      <Routes>
-        <Route path="/" element={<WelcomePage />} />
-      </Routes>
+      <TokenProvider>
+        <Header />
+        <Routes>
+          <Route path="/" element={<WelcomePage />} />
+        </Routes>
+      </TokenProvider>
     </BrowserRouter>
   );
 };
