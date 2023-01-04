@@ -1,14 +1,14 @@
-import React from "react";
-import useLogin from "../hooks/useLogin";
+import React, { useContext } from "react";
+import tokenContext from "../contexts/tokenContext";
 import Button from "./Button";
 import LinkButton from "./LinkButton";
 
 const LoginButton = () => {
-  const { isLogged, logout } = useLogin();
+  const { token, removeToken } = useContext(tokenContext);
 
-  if (!isLogged)
+  if (token === null)
     return <LinkButton color="secondary" value="로그인" path="signin" />;
-  return <Button color="secondary" value={"로그아웃"} onClick={logout} />;
+  return <Button color="secondary" value={"로그아웃"} onClick={removeToken} />;
 };
 
 export default LoginButton;
