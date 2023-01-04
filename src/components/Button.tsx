@@ -8,7 +8,7 @@ interface buttonProps {
   color?: "primary" | "secondary" | "tertiary";
   icon?: React.ReactNode;
   value: string;
-  onClick: () => void;
+  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 const Button = ({
