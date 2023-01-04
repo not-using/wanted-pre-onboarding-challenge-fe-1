@@ -1,0 +1,4 @@
+.button__wrapper {
+  text-decoration: none;
+  color: var(--button-color);
+}

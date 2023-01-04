@@ -4,6 +4,9 @@
   border: solid 1px;
   border-color: var(--button-color);
   padding: 7px 20px;
+  font-size: 16px;
+  line-height: 1;
+  display: inline-block;
 }
 
 .button__wrapper.primary {
