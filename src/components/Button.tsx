@@ -8,6 +8,7 @@ interface buttonProps {
   color?: "primary" | "secondary" | "tertiary";
   icon?: React.ReactNode;
   value: string;
+  disabled?: boolean;
   onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
@@ -19,6 +20,7 @@ const Button = ({
   onClick,
   icon,
   value,
+  disabled,
 }: buttonProps) => {
   return (
     <button
@@ -27,6 +29,7 @@ const Button = ({
       }`}
       type={type}
       onClick={onClick}
+      disabled={disabled}
     >
       {icon}
       <span>{value}</span>

@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import useAuth from "../hooks/api/useAuth";
 import Button from "../components/Button";
 import Input from "../components/Input";
+import { emailRegex, passwordRegex } from "../policys/AuthRegex";
 import "../assets/css/AuthForm.css";
 
 interface authFormProps {
@@ -21,22 +22,50 @@ const AuthForm = ({ isSignIn }: authFormProps) => {
     setAuthInfo({ ...authInfo, password });
   };
 
-  const { sendRequest, message } = useAuth();
+  const { sendRequest, message, setMessage } = useAuth();
+  const isEmailValid = RegExp(emailRegex).test(authInfo.email);
+  const isPasswordValid = RegExp(passwordRegex).test(authInfo.password);
+
   const onClickSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     sendRequest(isSignIn, authInfo);
   };
 
+  useEffect(() => {
+    let validMessage = "";
+    if (
+      (authInfo.email.length > 0 || authInfo.password.length > 0) &&
+      !(isEmailValid && isPasswordValid)
+    )
+      validMessage = "이메일 혹은 비밀번호를 확인해주세요";
+
+    setMessage(validMessage);
+  }, [authInfo, isEmailValid, isPasswordValid, setMessage]);
+
   return (
     <form className="auth-form__wrapper">
-      <Input value={authInfo.email} onChange={setEmail} />
-      <Input value={authInfo.password} onChange={setPassword} />
+      <Input
+        value={authInfo.email}
+        onChange={setEmail}
+        labelText="이메일"
+        required
+        pattern={emailRegex.source}
+      />
+      <Input
+        value={authInfo.password}
+        onChange={setPassword}
+        type="password"
+        labelText="비밀번호"
+        minLength={8}
+        required
+      />
       {message?.length > 0 ? <p>{message}</p> : null}
       <Button
         type="submit"
         value={isSignIn ? "로그인" : "회원가입"}
-        isFilled={isSignIn}
+        isFilled={true}
         onClick={onClickSubmit}
+        disabled={!isEmailValid || !isPasswordValid}
       />
     </form>
   );

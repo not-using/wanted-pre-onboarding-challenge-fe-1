@@ -35,7 +35,7 @@ const useAuth = () => {
     }
   }, [config, request, saveToken]);
 
-  return { sendRequest, message };
+  return { sendRequest, message, setMessage };
 };
 
 export default useAuth;

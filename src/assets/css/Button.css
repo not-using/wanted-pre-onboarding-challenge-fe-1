@@ -28,3 +28,10 @@
   background-color: var(--button-color);
   color: white;
 }
+
+.button__wrapper:disabled {
+  background-color: var(--dimmed-color);
+  color: white;
+  border-color: white;
+  cursor: no-drop;
+}
