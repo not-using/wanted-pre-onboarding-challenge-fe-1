@@ -1,0 +1,10 @@
+.todo-list__wrapper {
+  margin: auto 20px;
+}
+
+.todo-list__wrapper .add-item {
+  text-align: center;
+  vertical-align: center;
+  line-height: 100%;
+  border: dashed 1px var(--secondary-color);
+}

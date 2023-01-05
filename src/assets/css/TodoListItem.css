@@ -1,0 +1,9 @@
+.todo-item__wrapper {
+  width: 300px;
+  height: 100px;
+  display: block;
+  border-radius: 10px;
+  background-color: white;
+  text-decoration: none;
+  color: var(--tertiary-color);
+}
