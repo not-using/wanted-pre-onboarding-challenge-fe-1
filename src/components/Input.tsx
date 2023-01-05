@@ -22,7 +22,7 @@ const Input = ({
   minLength,
   maxLength,
   pattern,
-  type,
+  type = "text",
   value,
   onChange,
   required = false,
@@ -50,6 +50,7 @@ const Input = ({
         minLength={minLength}
         maxLength={maxLength}
         pattern={pattern}
+        autoComplete={type === "password" ? "current-password" : undefined}
       />
     </label>
   );
