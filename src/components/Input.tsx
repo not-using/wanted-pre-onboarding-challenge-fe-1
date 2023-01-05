@@ -11,6 +11,7 @@ interface inputProps {
   pattern?: string;
   type?: string;
   onChange: (value: string) => void;
+  autoComplete?: string;
   required?: boolean;
   isValid?: boolean;
 }
@@ -25,6 +26,7 @@ const Input = ({
   type = "text",
   value,
   onChange,
+  autoComplete,
   required = false,
 }: inputProps) => {
   const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -50,7 +52,7 @@ const Input = ({
         minLength={minLength}
         maxLength={maxLength}
         pattern={pattern}
-        autoComplete={type === "password" ? "current-password" : undefined}
+        autoComplete={autoComplete}
       />
     </label>
   );

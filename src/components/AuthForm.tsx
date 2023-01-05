@@ -53,12 +53,14 @@ const AuthForm = ({ isSignIn }: authFormProps) => {
         onChange={setEmail}
         placeholder="이메일을 입력해주세요"
         required
+        autoComplete="email"
         pattern={emailRegex.source}
       />
       <Input
         value={authInfo.password}
         onChange={setPassword}
         type="password"
+        autoComplete="password"
         placeholder="비밀번호를 입력해주세요"
         minLength={8}
         required
