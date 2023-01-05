@@ -18,7 +18,7 @@ const TodoPageRoute = () => {
     const token = window.localStorage.getItem("token");
 
     if (token === null) {
-      navigate("/signin");
+      navigate("/auth");
     }
   }, [navigate]);
 

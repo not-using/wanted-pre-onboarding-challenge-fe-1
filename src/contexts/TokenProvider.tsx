@@ -27,7 +27,7 @@ const TokenProvider = ({ children }: tokenProviderProps) => {
   const removeToken = useCallback(() => {
     window.localStorage.removeItem("token");
     setToken(null);
-    navigate("/signin");
+    navigate("/auth");
   }, [navigate]);
 
   return (

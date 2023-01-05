@@ -11,7 +11,7 @@ const AuthPage = () => {
   const path = usePath();
   const { token } = useContext(tokenContext);
   const navigate = useNavigate();
-  const isSignIn = path === "/signin";
+  const isSignIn = path === "/auth";
 
   useEffect(() => {
     if (token !== null) navigate("/");
