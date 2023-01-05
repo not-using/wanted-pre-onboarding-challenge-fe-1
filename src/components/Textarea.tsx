@@ -15,6 +15,7 @@ interface textareaProps {
   required?: boolean;
   validateRequired?: boolean;
   isValid?: boolean;
+  disabled?: boolean;
 }
 const Textarea = ({
   className,
@@ -24,6 +25,7 @@ const Textarea = ({
   value,
   onChange,
   required = false,
+  disabled = false,
 }: textareaProps) => {
   const onChangeTextarea = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const { value } = e.currentTarget;
@@ -38,6 +40,7 @@ const Textarea = ({
       required={required}
       minLength={minLength}
       maxLength={maxLength}
+      disabled={disabled}
     ></textarea>
   );
 };

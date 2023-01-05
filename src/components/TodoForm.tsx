@@ -36,7 +36,7 @@ const TodoForm = ({ addTodo }: todoFormProps) => {
   return (
     <form className="todo-detail__wrapper todo-form" onSubmit={submitTodo}>
       <Input
-        className="todo-form__title"
+        className="todo-detail__title"
         placeholder="할일 제목을 입력해주세요"
         value={todoItem.title}
         onChange={(value: string) =>
@@ -44,7 +44,7 @@ const TodoForm = ({ addTodo }: todoFormProps) => {
         }
       />
       <Textarea
-        className="todo-form___contents"
+        className="todo-detail__content"
         placeholder="할일 세부내용을 적어주세요"
         value={todoItem.content}
         onChange={(value: string) =>

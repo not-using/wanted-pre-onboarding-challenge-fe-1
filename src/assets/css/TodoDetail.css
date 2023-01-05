@@ -3,4 +3,61 @@
   width: 800px;
   height: 600px;
   background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.todo-detail__title {
+  width: 90%;
+  margin: 40px 0 10px;
+}
+
+.todo-detail__title:disabled {
+  font-size: 24px;
+  font-weight: bold;
+  border: none;
+  background-color: unset;
+  color: inherit;
+}
+
+.todo-detail__content {
+  width: 90%;
+  flex-grow: 1;
+  font-size: 16px;
+}
+.todo-detail__content:disabled {
+  border: none;
+  background-color: unset;
+  color: inherit;
+}
+.todo-detail__date {
+  width: 90%;
+  margin: 10px 0;
+}
+.todo-detail__date > p {
+  margin: 0 10px;
+  font-size: 14px;
+}
+
+.todo-detail__buttons {
+  display: flex;
+  margin: 20px auto 50px;
+}
+.todo-detail__buttons > button {
+  display: flex;
+  justify-content: center;
+  width: 80px;
+  margin: 10px;
+}
+.todo-detail__buttons > button.no-icon > span {
+  margin: 0;
+}
+.todo-detail__buttons > button > svg {
+  width: 16px;
+  height: 16px;
+  margin-right: 10px;
+}
+.todo-detail__buttons > button > span {
+  margin-right: 10px;
 }

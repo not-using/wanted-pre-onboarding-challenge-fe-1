@@ -15,6 +15,7 @@ interface inputProps {
   required?: boolean;
   validateRequired?: boolean;
   isValid?: boolean;
+  disabled?: boolean;
 }
 
 const Input = ({
@@ -30,6 +31,7 @@ const Input = ({
   validateRequired = false,
   autoComplete,
   required = false,
+  disabled = false,
 }: inputProps) => {
   const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const target = e.currentTarget;
@@ -55,6 +57,7 @@ const Input = ({
       maxLength={maxLength}
       pattern={pattern}
       autoComplete={autoComplete}
+      disabled={disabled}
     />
   );
 };
