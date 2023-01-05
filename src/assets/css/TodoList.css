@@ -1,10 +1,28 @@
 .todo-list__wrapper {
+  width: 320px;
   margin: auto 20px;
 }
 
-.todo-list__wrapper .add-item {
-  text-align: center;
-  vertical-align: center;
-  line-height: 100%;
+.todo-list__add-item {
+  display: block;
+  width: 300px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  color: var(--secondary-color);
+  text-decoration: none;
   border: dashed 1px var(--secondary-color);
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.todo-list__add-item > svg {
+  color: var(--secondary-color);
+  margin-right: 10px;
+}
+.todo-list__list {
+  height: 480px;
+  overflow-y: scroll;
 }

@@ -1,0 +1,19 @@
+.todo-detail__wrapper.todo-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.todo-form__title {
+  width: 90%;
+  margin: 40px 0 10px;
+}
+
+.todo-form___contents {
+  width: 90%;
+  flex-grow: 1;
+}
+
+.todo-form__submit-button {
+  margin: 20px auto 50px;
+}

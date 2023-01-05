@@ -2,9 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import TokenProvider from "./contexts/TokenProvider";
 import Header from "./components/Header";
 import AuthPage from "./pages/AuthPage";
-import TodoPageRoute from "./pages/TodoPageRoute";
-import TodoWelcomePage from "./pages/TodoWelcomePage";
-import TodoDetailPage from "./pages/TodoDetailPage";
+import TodoPageRoute from "./pages/TodoPage";
 
 const App = () => {
   return (
@@ -14,10 +12,7 @@ const App = () => {
         <Routes>
           <Route path="/signin" element={<AuthPage />} />
           <Route path="/signup" element={<AuthPage />} />
-          <Route element={<TodoPageRoute />}>
-            <Route path="/" element={<TodoWelcomePage />} />
-            <Route path="/:id" element={<TodoDetailPage />} />
-          </Route>
+          <Route path="*" element={<TodoPageRoute />} />
         </Routes>
       </TokenProvider>
     </BrowserRouter>

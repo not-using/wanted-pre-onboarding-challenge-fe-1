@@ -9,7 +9,7 @@ interface buttonProps {
   icon?: React.ReactNode;
   value: string;
   disabled?: boolean;
-  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 const Button = ({
