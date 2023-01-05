@@ -4,6 +4,10 @@
   align-items: center;
 }
 
+.auth-form__wrapper > input {
+  text-align: center;
+}
+
 .auth-form__message {
   margin-top: 10px;
   height: 20px;

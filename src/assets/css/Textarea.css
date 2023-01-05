@@ -1,10 +1,9 @@
-.input__wrapper {
+.textarea__wrapper {
   margin: 8px 10px;
-  width: 300px;
-  height: 36px;
   border: solid 1px var(--tertiary-color);
   font-size: 14px;
-  padding: 10px;
-  box-sizing: border-box;
   border-radius: 10px;
+  padding: 10px;
+  font-family: inherit;
+  box-sizing: border-box;
 }
