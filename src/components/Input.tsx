@@ -5,7 +5,6 @@ interface inputProps {
   className?: string;
   placeholder?: string;
   value: string;
-  labelText?: string;
   minLength?: number;
   maxLength?: number;
   pattern?: string;
@@ -21,7 +20,6 @@ interface inputProps {
 const Input = ({
   className,
   placeholder,
-  labelText,
   minLength,
   maxLength,
   pattern,
@@ -46,21 +44,18 @@ const Input = ({
   };
 
   return (
-    <label className={`input__wrapper ${className ?? ""}`}>
-      {labelText}
-      <input
-        className="input__input-box"
-        type={type}
-        placeholder={placeholder}
-        value={value}
-        onChange={onChangeInput}
-        required={required}
-        minLength={minLength}
-        maxLength={maxLength}
-        pattern={pattern}
-        autoComplete={autoComplete}
-      />
-    </label>
+    <input
+      className={`input__wrapper ${className ?? ""}`}
+      type={type}
+      placeholder={placeholder}
+      value={value}
+      onChange={onChangeInput}
+      required={required}
+      minLength={minLength}
+      maxLength={maxLength}
+      pattern={pattern}
+      autoComplete={autoComplete}
+    />
   );
 };
 
