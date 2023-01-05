@@ -92,8 +92,8 @@ const TodoDetail = ({ updateTodo, removeTodo }: todoDetailProps) => {
       />
       {editMode ? null : (
         <div className="todo-detail__date">
-          <p>최초 생성일 : {itemInfo.createdAt.slice(0, 10)}</p>
-          <p>최근 수정일 : {itemInfo.updatedAt.slice(0, 10)}</p>
+          <p>최초 생성 : {itemInfo.createdAt.replace("T", " ").slice(0, 16)}</p>
+          <p>최근 수정 : {itemInfo.updatedAt.replace("T", " ").slice(0, 16)}</p>
         </div>
       )}
       <Textarea
