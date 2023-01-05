@@ -12,4 +12,6 @@ body {
   --tertiary-color: #0f4471;
   --dimmed-color: #a9a9a9;
   --background-color: #f6f6f6;
+
+  background-color: var(--background-color);
 }
