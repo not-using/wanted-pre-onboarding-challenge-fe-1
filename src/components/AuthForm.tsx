@@ -4,6 +4,7 @@ import useApi from "../hooks/useApi";
 import Button from "../components/Button";
 import Input from "../components/Input";
 import { emailRegex, passwordRegex } from "../policys/AuthRegex";
+import { amendState } from "../utils/amendState";
 import "../assets/css/AuthForm.css";
 
 interface authFormProps {
@@ -19,13 +20,7 @@ const AuthForm = ({ isSignIn }: authFormProps) => {
 
   const { saveToken } = useContext(tokenContext);
   const { request } = useApi();
-  
-  const setEmail = (email: string) => {
-    setAuthInfo({ ...authInfo, email });
-  };
-  const setPassword = (password: string) => {
-    setAuthInfo({ ...authInfo, password });
-  };
+
   const sendRequest = useCallback(
     (isSignIn: boolean, data: { email: string; password: string }) => {
       request(
@@ -75,7 +70,9 @@ const AuthForm = ({ isSignIn }: authFormProps) => {
     <form className="auth-form__wrapper">
       <Input
         value={authInfo.email}
-        onChange={setEmail}
+        onChange={(value: string) =>
+          amendState(authInfo, setAuthInfo, "email", value)
+        }
         placeholder="이메일을 입력해주세요"
         required
         autoComplete="email"
@@ -83,7 +80,9 @@ const AuthForm = ({ isSignIn }: authFormProps) => {
       />
       <Input
         value={authInfo.password}
-        onChange={setPassword}
+        onChange={(value: string) =>
+          amendState(authInfo, setAuthInfo, "password", value)
+        }
         type="password"
         autoComplete="password"
         placeholder="비밀번호를 입력해주세요"
