@@ -24,12 +24,13 @@
 .todo-detail__content {
   width: 90%;
   flex-grow: 1;
-  font-size: 16px;
+  font-size: 14px;
 }
 .todo-detail__content:disabled {
   border: none;
   background-color: unset;
   color: inherit;
+  font-size: 16px;
 }
 .todo-detail__date {
   width: 90%;

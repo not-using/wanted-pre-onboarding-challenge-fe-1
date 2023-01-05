@@ -43,7 +43,7 @@ const TodoPageRoute = () => {
 
   const removeTodo = useCallback(
     (removedId: string) => {
-      const removedList = todoList.filter((todo) => todo.id === removedId);
+      const removedList = todoList.filter((todo) => todo.id !== removedId);
       setTodoList(removedList);
     },
     [todoList]
@@ -68,7 +68,7 @@ const TodoPageRoute = () => {
       {path === "/" || path === "/create" ? (
         <TodoForm addTodo={addTodo} />
       ) : (
-        <TodoDetail />
+        <TodoDetail updateTodo={updateTodo} removeTodo={removeTodo} />
       )}
     </main>
   );

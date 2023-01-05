@@ -9,8 +9,13 @@ import { amendState } from "../utils/amendState";
 import { ReactComponent as EditIcon } from "../assets/image/edit.svg";
 import { ReactComponent as TrashIcon } from "../assets/image/trash.svg";
 import "../assets/css/TodoDetail.css";
+import { useNavigate } from "react-router-dom";
 
-const TodoDetail = () => {
+interface todoDetailProps {
+  updateTodo: (newTodo: todoItemDto) => void;
+  removeTodo: (todoId: string) => void;
+}
+const TodoDetail = ({ updateTodo, removeTodo }: todoDetailProps) => {
   const [editMode, setEditMode] = useState(false);
   const [itemInfo, setItemInfo] = useState<todoItemDto | undefined>(undefined);
   const [originInfo, setOriginInfo] = useState<todoItemDto | undefined>(
@@ -18,9 +23,9 @@ const TodoDetail = () => {
   );
 
   const path = usePath();
+  const navigate = useNavigate();
   const { request } = useApi();
 
-  console.dir(itemInfo);
   useEffect(() => {
     request(
       {
@@ -31,15 +36,44 @@ const TodoDetail = () => {
         setItemInfo(response.data?.data);
       }
     );
+    setEditMode(false);
   }, [path, request]);
 
-  const onClickEdit = editMode
-    ? undefined
-    : () => {
-        setEditMode(true);
-        setOriginInfo(itemInfo);
-      };
-  const onClickDelete = () => {};
+  const onClickEdit = () => {
+    if (!editMode) {
+      setOriginInfo(itemInfo);
+      setEditMode(true);
+      return;
+    }
+    request(
+      {
+        method: "put",
+        url: `/todos${path}`,
+        data: {
+          title: itemInfo?.title,
+          content: itemInfo?.content,
+        },
+      },
+      (response: any) => {
+        const newTodo = response.data?.data;
+        updateTodo(newTodo);
+        setItemInfo(newTodo);
+        setEditMode(false);
+      }
+    );
+  };
+  const onClickDelete = () => {
+    request(
+      {
+        method: "delete",
+        url: `/todos${path}`,
+      },
+      () => {
+        removeTodo(path.slice(1));
+        navigate("/");
+      }
+    );
+  };
   const onClickUndo = () => {
     setEditMode(false);
     setItemInfo(originInfo);
