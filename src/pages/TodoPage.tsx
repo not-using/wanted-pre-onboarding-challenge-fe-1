@@ -1,26 +1,26 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import React, { useCallback, useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import tokenContext from "../contexts/tokenContext";
 import useApi from "../hooks/useApi";
+import usePath from "../hooks/usePath";
 import TodoList from "../components/TodoList";
 import TodoForm from "../components/TodoForm";
 import TodoDetail from "../components/TodoDetail";
 import { todoItemDto } from "../types/todoItemDto";
 import "../assets/css/TodoPage.css";
-import usePath from "../hooks/usePath";
 
 const TodoPageRoute = () => {
   const [todoList, setTodoList] = useState<Array<todoItemDto>>([]);
   const navigate = useNavigate();
   const { request } = useApi();
   const path = usePath();
+  const { token } = useContext(tokenContext);
 
   useEffect(() => {
-    const token = window.localStorage.getItem("token");
-
     if (token === null) {
       navigate("/auth");
     }
-  }, [navigate]);
+  }, [navigate, token]);
 
   useEffect(() => {
     request(

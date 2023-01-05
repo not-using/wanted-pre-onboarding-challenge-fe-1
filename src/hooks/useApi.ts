@@ -1,17 +1,21 @@
 import axios from "axios";
-import { useCallback, useContext } from "react";
+import { useCallback, useContext, useMemo } from "react";
 import tokenContext from "../contexts/tokenContext";
 import { httpConfigType } from "../types/httpConfig";
 
-const axiosInstance = axios.create({
-  withCredentials: true,
-  headers: {
-    Authorization: window.localStorage.getItem("token"),
-  },
-});
-
 const useApi = () => {
-  const { removeToken } = useContext(tokenContext);
+  const { token, removeToken } = useContext(tokenContext);
+
+  const axiosInstance = useMemo(
+    () =>
+      axios.create({
+        withCredentials: true,
+        headers: {
+          Authorization: token,
+        },
+      }),
+    [token]
+  );
 
   const request = useCallback(
     (
