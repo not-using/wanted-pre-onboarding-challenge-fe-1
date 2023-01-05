@@ -34,7 +34,7 @@ const useAuth = () => {
 
       request(onSuccess, onFailure);
     }
-  }, [config, request, saveToken]);
+  }, [config, request, saveToken, setConfig]);
 
   return { sendRequest, message, setMessage };
 };
