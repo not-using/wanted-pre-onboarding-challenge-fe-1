@@ -12,8 +12,16 @@ const AuthPage = () => {
   return (
     <main className="auth-page__wrapper">
       <LogoTitle />
-      <AuthForm isSignIn={isSignIn} />
-      {isSignIn ? <LinkButton path="/signup" value="회원가입" /> : null}
+      <section className="auth-page__contents">
+        <AuthForm isSignIn={isSignIn} />
+        {isSignIn ? (
+          <LinkButton
+            className="auth-page__signup-button"
+            path="/signup"
+            value="회원가입"
+          />
+        ) : null}
+      </section>
     </main>
   );
 };

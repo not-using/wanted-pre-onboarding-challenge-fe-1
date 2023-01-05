@@ -1,4 +1,10 @@
 .button__wrapper {
   text-decoration: none;
   color: var(--button-color);
+  text-align: center;
+  box-sizing: content-box;
+}
+
+.button__wrapper > span {
+  font-size: inherit;
 }

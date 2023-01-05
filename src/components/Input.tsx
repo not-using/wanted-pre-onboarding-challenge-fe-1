@@ -1,6 +1,8 @@
 import React from "react";
+import "../assets/css/Input.css";
 
 interface inputProps {
+  className?: string;
   placeholder?: string;
   value: string;
   labelText?: string;
@@ -14,6 +16,7 @@ interface inputProps {
 }
 
 const Input = ({
+  className,
   placeholder,
   labelText,
   minLength,
@@ -35,9 +38,10 @@ const Input = ({
   };
 
   return (
-    <label>
+    <label className={`input__wrapper ${className ?? ""}`}>
       {labelText}
       <input
+        className="input__input-box"
         type={type}
         placeholder={placeholder}
         value={value}

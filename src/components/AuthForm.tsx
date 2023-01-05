@@ -47,7 +47,7 @@ const AuthForm = ({ isSignIn }: authFormProps) => {
       <Input
         value={authInfo.email}
         onChange={setEmail}
-        labelText="이메일"
+        placeholder="이메일을 입력해주세요"
         required
         pattern={emailRegex.source}
       />
@@ -55,12 +55,13 @@ const AuthForm = ({ isSignIn }: authFormProps) => {
         value={authInfo.password}
         onChange={setPassword}
         type="password"
-        labelText="비밀번호"
+        placeholder="비밀번호를 입력해주세요"
         minLength={8}
         required
       />
-      {message?.length > 0 ? <p>{message}</p> : null}
+      <p className="auth-form__message">{message}</p>
       <Button
+        className="auth-form__submit-button"
         type="submit"
         value={isSignIn ? "로그인" : "회원가입"}
         isFilled={true}

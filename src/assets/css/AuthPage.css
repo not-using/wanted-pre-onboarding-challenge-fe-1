@@ -9,3 +9,13 @@
 .auth-page__wrapper .logo-title__wrapper {
   margin-bottom: 20px;
 }
+
+.auth-page__contents {
+  height: 300px;
+}
+
+.auth-page__signup-button {
+  width: 150px;
+  display: block;
+  margin: 10px auto;
+}

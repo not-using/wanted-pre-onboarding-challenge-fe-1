@@ -1,4 +1,16 @@
 .auth-form__wrapper {
   display: flex;
   flex-direction: column;
+  align-items: center;
+}
+
+.auth-form__message {
+  margin-top: 10px;
+  height: 20px;
+  font-size: 14px;
+  color: var(--primary-color);
+}
+.auth-form__submit-button {
+  margin: 0 auto;
+  width: 150px;
 }
