@@ -42,6 +42,10 @@ const AuthForm = ({ isSignIn }: authFormProps) => {
     setMessage(validMessage);
   }, [authInfo, isEmailValid, isPasswordValid, setMessage]);
 
+  useEffect(() => {
+    setMessage("");
+  }, [isSignIn, setMessage]);
+
   return (
     <form className="auth-form__wrapper">
       <Input
@@ -66,7 +70,7 @@ const AuthForm = ({ isSignIn }: authFormProps) => {
         value={isSignIn ? "로그인" : "회원가입"}
         isFilled={true}
         onClick={onClickSubmit}
-        disabled={!isEmailValid || !isPasswordValid}
+        disabled={!isEmailValid || !isPasswordValid || message?.length > 0}
       />
     </form>
   );

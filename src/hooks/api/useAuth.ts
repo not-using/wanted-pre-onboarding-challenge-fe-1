@@ -6,7 +6,7 @@ const useAuth = () => {
   const [message, setMessage] = useState("");
   const { saveToken } = useContext(tokenContext);
   const { config, setConfig, request } = useApi();
-  
+
   const sendRequest = (
     isSignIn: boolean,
     data: { email: string; password: string }
@@ -27,7 +27,8 @@ const useAuth = () => {
       };
 
       const onFailure = (error: any) => {
-        const message = error.data?.details as string;
+        const message = error.response.data?.details as string;
+        setConfig(null);
         setMessage(message);
       };
 
