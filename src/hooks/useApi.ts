@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useCallback, useContext, useState } from "react";
+import { useCallback, useContext } from "react";
 import tokenContext from "../contexts/tokenContext";
 import { httpConfigType } from "../types/httpConfig";
 
@@ -11,15 +11,18 @@ const axiosInstance = axios.create({
 });
 
 const useApi = () => {
-  const [config, setConfig] = useState<httpConfigType | null>(null);
   const { removeToken } = useContext(tokenContext);
 
   const request = useCallback(
-    (resolve: (response: any) => void, reject: (error: any) => void) => {
+    (
+      config: httpConfigType,
+      resolve: (response: any) => void,
+      reject?: (error: any) => void
+    ) => {
       if (config === null) return;
       const { method, url, data } = config;
       const transferKey = method === "get" ? "params" : "data";
-      
+
       axiosInstance({ method, url, [transferKey]: data })
         ?.then((response) => {
           resolve(response);
@@ -32,13 +35,14 @@ const useApi = () => {
             removeToken();
             return;
           }
-          reject(error);
+          console.log(error);
+          if (reject) reject(error);
         });
     },
-    [config, removeToken]
+    [removeToken]
   );
 
-  return { config, setConfig, request };
+  return { request };
 };
 
 export default useApi;

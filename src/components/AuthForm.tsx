@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
-import useAuth from "../hooks/api/useAuth";
+import React, { useCallback, useContext, useEffect, useState } from "react";
+import tokenContext from "../contexts/tokenContext";
+import useApi from "../hooks/useApi";
 import Button from "../components/Button";
 import Input from "../components/Input";
 import { emailRegex, passwordRegex } from "../policys/AuthRegex";
@@ -14,15 +15,39 @@ const AuthForm = ({ isSignIn }: authFormProps) => {
     email: "",
     password: "",
   });
+  const [message, setMessage] = useState("");
 
+  const { saveToken } = useContext(tokenContext);
+  const { request } = useApi();
+  
   const setEmail = (email: string) => {
     setAuthInfo({ ...authInfo, email });
   };
   const setPassword = (password: string) => {
     setAuthInfo({ ...authInfo, password });
   };
+  const sendRequest = useCallback(
+    (isSignIn: boolean, data: { email: string; password: string }) => {
+      request(
+        {
+          method: "post",
+          url: `users/${isSignIn ? "login" : "create"}`,
+          data,
+        },
+        (response: any) => {
+          const token = response.data?.token as string;
+          saveToken(token);
+          setMessage("");
+        },
+        (error: any) => {
+          const message = error.response.data?.details as string;
+          setMessage(message);
+        }
+      );
+    },
+    [request, saveToken]
+  );
 
-  const { sendRequest, message, setMessage } = useAuth();
   const isEmailValid = RegExp(emailRegex).test(authInfo.email);
   const isPasswordValid = RegExp(passwordRegex).test(authInfo.password);
 
