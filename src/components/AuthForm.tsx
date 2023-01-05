@@ -75,8 +75,10 @@ const AuthForm = ({ isSignIn }: authFormProps) => {
         }
         placeholder="이메일을 입력해주세요"
         required
+        validateRequired
         autoComplete="email"
         pattern={emailRegex.source}
+        patternErrorMessage="최소 @와 .로 구분되는 입력값이어야 합니다 이메일을 입력해주세요"
       />
       <Input
         value={authInfo.password}
@@ -88,6 +90,7 @@ const AuthForm = ({ isSignIn }: authFormProps) => {
         placeholder="비밀번호를 입력해주세요"
         minLength={8}
         required
+        validateRequired
       />
       <p className="auth-form__message">{message}</p>
       <Button
