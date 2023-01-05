@@ -10,7 +10,10 @@
 
 .todo-detail__title {
   width: 90%;
+  white-space: pre-wrap;
   margin: 40px 0 10px;
+  resize: none;
+  vertical-align: center;
 }
 
 .todo-detail__title:disabled {
@@ -25,6 +28,7 @@
   width: 90%;
   flex-grow: 1;
   font-size: 14px;
+  resize: none;
 }
 .todo-detail__content:disabled {
   border: none;

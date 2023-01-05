@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import useApi from "../hooks/useApi";
 import usePath from "../hooks/usePath";
-import Input from "./Input";
 import Button from "./Button";
 import Textarea from "./Textarea";
 import { todoItemDto } from "../types/todoItemDto";
@@ -82,7 +81,7 @@ const TodoDetail = ({ updateTodo, removeTodo }: todoDetailProps) => {
   if (itemInfo === undefined) return null;
   return (
     <section className="todo-detail__wrapper">
-      <Input
+      <Textarea
         className="todo-detail__title"
         value={itemInfo.title}
         onChange={(value: string) =>

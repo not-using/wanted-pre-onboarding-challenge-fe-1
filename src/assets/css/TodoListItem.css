@@ -6,4 +6,21 @@
   background-color: white;
   text-decoration: none;
   color: var(--tertiary-color);
+  padding: 20px;
+  box-sizing: border-box;
+  margin: 10px 0;
+}
+
+.todo-item__title {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 5px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+.todo-item__updated {
+  font-size: 14px;
+  margin: 0;
 }

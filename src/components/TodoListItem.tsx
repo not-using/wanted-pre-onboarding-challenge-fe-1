@@ -1,7 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { todoItemDto } from "../types/todoItemDto";
 import "../assets/css/TodoListItem.css";
-import { Link } from "react-router-dom";
 
 interface todoListItemProps {
   item: todoItemDto;
@@ -10,8 +10,10 @@ interface todoListItemProps {
 const TodoListItem = ({ item }: todoListItemProps) => {
   return (
     <Link to={`/${item.id}`} className="todo-item__wrapper">
-      <p>{item.title}</p>
-      <p>last updated {item.updatedAt.slice(0, 10)}</p>
+      <p className="todo-item__title">{item.title}</p>
+      <p className="todo-item__updated">
+        최근 수정일 {item.updatedAt.slice(0, 10)}
+      </p>
     </Link>
   );
 };
