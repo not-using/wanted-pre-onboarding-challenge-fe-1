@@ -1,5 +1,5 @@
 import React from "react";
-import "../assets/css/Textarea.css";
+import "assets/css/Textarea.css";
 
 interface textareaProps {
   className?: string;

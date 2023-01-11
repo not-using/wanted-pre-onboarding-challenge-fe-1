@@ -1,13 +1,13 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import tokenContext from "../contexts/tokenContext";
-import useApi from "../hooks/useApi";
-import usePath from "../hooks/usePath";
-import TodoList from "../components/TodoList";
-import TodoForm from "../components/TodoForm";
-import TodoDetail from "../components/TodoDetail";
-import { todoItemDto } from "../types/todoItemDto";
-import "../assets/css/TodoPage.css";
+import tokenContext from "contexts/tokenContext";
+import useApi from "hooks/useApi";
+import usePath from "hooks/usePath";
+import TodoList from "components/TodoList";
+import TodoForm from "components/TodoForm";
+import TodoDetail from "components/TodoDetail";
+import { todoItemDto } from "types/todoItemDto";
+import "assets/css/TodoPage.css";
 
 const TodoPageRoute = () => {
   const [todoList, setTodoList] = useState<Array<todoItemDto>>([]);

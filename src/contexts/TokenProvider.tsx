@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import tokenContext from "./tokenContext";
+import tokenContext from "contexts/tokenContext";
 
 interface tokenProviderProps {
   children: React.ReactNode;

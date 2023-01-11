@@ -1,11 +1,11 @@
 import React, { useContext, useEffect } from "react";
-import usePath from "../hooks/usePath";
-import LogoTitle from "../components/LogoTitle";
-import AuthForm from "../components/AuthForm";
-import LinkButton from "../components/LinkButton";
-import "../assets/css/AuthPage.css";
-import tokenContext from "../contexts/tokenContext";
 import { useNavigate } from "react-router-dom";
+import usePath from "hooks/usePath";
+import LogoTitle from "components/LogoTitle";
+import AuthForm from "components/AuthForm";
+import LinkButton from "components/LinkButton";
+import tokenContext from "contexts/tokenContext";
+import "assets/css/AuthPage.css";
 
 const AuthPage = () => {
   const path = usePath();

@@ -1,11 +1,11 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
-import tokenContext from "../contexts/tokenContext";
-import useApi from "../hooks/useApi";
-import Button from "../components/Button";
-import Input from "../components/Input";
-import { emailRegex, passwordRegex } from "../policys/AuthRegex";
-import { amendState } from "../utils/amendState";
-import "../assets/css/AuthForm.css";
+import tokenContext from "contexts/tokenContext";
+import useApi from "hooks/useApi";
+import Button from "components/Button";
+import Input from "components/Input";
+import { emailRegex, passwordRegex } from "policys/AuthRegex";
+import { amendState } from "utils/amendState";
+import "assets/css/AuthForm.css";
 
 interface authFormProps {
   isSignIn: boolean;

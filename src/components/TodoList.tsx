@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import TodoListItem from "./TodoListItem";
-import { todoItemDto } from "../types/todoItemDto";
-import { ReactComponent as PlusIcon } from "../assets/image/plus.svg";
-import "../assets/css/TodoList.css";
+import TodoListItem from "components/TodoListItem";
+import { todoItemDto } from "types/todoItemDto";
+import { ReactComponent as PlusIcon } from "assets/image/plus.svg";
+import "assets/css/TodoList.css";
 
 interface todoListProps {
   todoList: Array<todoItemDto>;

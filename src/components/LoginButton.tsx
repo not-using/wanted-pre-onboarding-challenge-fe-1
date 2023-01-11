@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
-import tokenContext from "../contexts/tokenContext";
-import Button from "./Button";
-import LinkButton from "./LinkButton";
+import tokenContext from "contexts/tokenContext";
+import Button from "components/Button";
+import LinkButton from "components/LinkButton";
 
 const LoginButton = () => {
   const { token, removeToken } = useContext(tokenContext);

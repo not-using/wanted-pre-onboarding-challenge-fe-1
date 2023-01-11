@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import LoginButton from "./LoginButton";
-import { ReactComponent as LogoIcon } from "../assets/image/logo.svg";
-import "../assets/css/Header.css";
+import LoginButton from "components/LoginButton";
+import { ReactComponent as LogoIcon } from "assets/image/logo.svg";
+import "assets/css/Header.css";
 
 const Header = () => {
   return (

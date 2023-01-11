@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useCallback, useContext, useMemo } from "react";
-import tokenContext from "../contexts/tokenContext";
-import { httpConfigType } from "../types/httpConfig";
+import tokenContext from "contexts/tokenContext";
+import { httpConfigType } from "types/httpConfig";
 
 const useApi = () => {
   const { token, removeToken } = useContext(tokenContext);

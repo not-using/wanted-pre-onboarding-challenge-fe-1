@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
-import useApi from "../hooks/useApi";
-import usePath from "../hooks/usePath";
-import Button from "./Button";
-import Textarea from "./Textarea";
-import { todoItemDto } from "../types/todoItemDto";
-import { amendState } from "../utils/amendState";
-import { ReactComponent as EditIcon } from "../assets/image/edit.svg";
-import { ReactComponent as TrashIcon } from "../assets/image/trash.svg";
-import "../assets/css/TodoDetail.css";
 import { useNavigate } from "react-router-dom";
+import useApi from "hooks/useApi";
+import usePath from "hooks/usePath";
+import Button from "components/Button";
+import Textarea from "components/Textarea";
+import { todoItemDto } from "types/todoItemDto";
+import { amendState } from "utils/amendState";
+import { ReactComponent as EditIcon } from "assets/image/edit.svg";
+import { ReactComponent as TrashIcon } from "assets/image/trash.svg";
+import "assets/css/TodoDetail.css";
 
 interface todoDetailProps {
   updateTodo: (newTodo: todoItemDto) => void;

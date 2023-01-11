@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import useApi from "../hooks/useApi";
-import Button from "./Button";
-import Input from "./Input";
-import Textarea from "./Textarea";
-import { todoItemDto } from "../types/todoItemDto";
-import { amendState } from "../utils/amendState";
-import "../assets/css/TodoForm.css";
+import useApi from "hooks/useApi";
+import Button from "components/Button";
+import Input from "components/Input";
+import Textarea from "components/Textarea";
+import { todoItemDto } from "types/todoItemDto";
+import { amendState } from "utils/amendState";
+import "assets/css/TodoForm.css";
 
 interface todoFormProps {
   addTodo: (todo: todoItemDto) => void;

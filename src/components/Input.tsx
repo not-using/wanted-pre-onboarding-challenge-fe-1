@@ -1,5 +1,5 @@
 import React from "react";
-import "../assets/css/Input.css";
+import "assets/css/Input.css";
 
 interface inputProps {
   className?: string;

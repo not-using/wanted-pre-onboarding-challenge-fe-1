@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { todoItemDto } from "../types/todoItemDto";
-import "../assets/css/TodoListItem.css";
+import { todoItemDto } from "types/todoItemDto";
+import "assets/css/TodoListItem.css";
 
 interface todoListItemProps {
   item: todoItemDto;
