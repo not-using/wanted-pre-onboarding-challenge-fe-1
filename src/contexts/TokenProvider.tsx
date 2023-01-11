@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import tokenContext from "contexts/tokenContext";
+import TokenContext from "contexts/TokenContext";
 
 interface tokenProviderProps {
   children: React.ReactNode;
@@ -31,9 +31,9 @@ const TokenProvider = ({ children }: tokenProviderProps) => {
   }, [navigate]);
 
   return (
-    <tokenContext.Provider value={{ token, saveToken, removeToken }}>
+    <TokenContext.Provider value={{ token, saveToken, removeToken }}>
       {children}
-    </tokenContext.Provider>
+    </TokenContext.Provider>
   );
 };
 

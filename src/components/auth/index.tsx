@@ -1,15 +1,15 @@
 import React, { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import usePath from "hooks/usePath";
-import LogoTitle from "components/LogoTitle";
-import AuthForm from "components/AuthForm";
-import LinkButton from "components/LinkButton";
-import tokenContext from "contexts/tokenContext";
+import usePath from "hooks/.commons/usePath";
+import LogoTitle from "components/.commons/LogoTitle";
+import LinkButton from "components/.commons/LinkButton";
+import AuthForm from "components/auth/AuthForm";
+import TokenContext from "contexts/TokenContext";
 import "assets/css/AuthPage.css";
 
 const AuthPage = () => {
   const path = usePath();
-  const { token } = useContext(tokenContext);
+  const { token } = useContext(TokenContext);
   const navigate = useNavigate();
   const isSignIn = path === "/auth";
 

@@ -1,9 +1,9 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
-import tokenContext from "contexts/tokenContext";
-import useApi from "hooks/useApi";
-import Button from "components/Button";
-import Input from "components/Input";
-import { emailRegex, passwordRegex } from "policys/AuthRegex";
+import TokenContext from "contexts/TokenContext";
+import useApi from "hooks/.commons/useApi";
+import Button from "components/.commons/Button";
+import Input from "components/.commons/Input";
+import { emailRegex, passwordRegex } from "constants/authRegex";
 import { amendState } from "utils/amendState";
 import "assets/css/AuthForm.css";
 
@@ -18,7 +18,7 @@ const AuthForm = ({ isSignIn }: authFormProps) => {
   });
   const [message, setMessage] = useState("");
 
-  const { saveToken } = useContext(tokenContext);
+  const { saveToken } = useContext(TokenContext);
   const { request } = useApi();
 
   const sendRequest = useCallback(

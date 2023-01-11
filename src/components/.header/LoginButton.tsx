@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
-import tokenContext from "contexts/tokenContext";
-import Button from "components/Button";
-import LinkButton from "components/LinkButton";
+import TokenContext from "contexts/TokenContext";
+import Button from "components/.commons/Button";
+import LinkButton from "components/.commons/LinkButton";
 
 const LoginButton = () => {
-  const { token, removeToken } = useContext(tokenContext);
+  const { token, removeToken } = useContext(TokenContext);
 
   if (token === null)
     return <LinkButton color="secondary" value="로그인" path="auth" />;

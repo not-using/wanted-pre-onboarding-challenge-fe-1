@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import TokenProvider from "contexts/TokenProvider";
-import Header from "components/Header";
-import AuthPage from "pages/AuthPage";
-import TodoPage from "pages/TodoPage";
+import Header from "components/.header";
+import AuthPage from "components/auth";
+import TodoPage from "components/todo";
 
 const App = () => {
   return (

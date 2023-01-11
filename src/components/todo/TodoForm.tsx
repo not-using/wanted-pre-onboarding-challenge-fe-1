@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import useApi from "hooks/useApi";
-import Button from "components/Button";
-import Input from "components/Input";
-import Textarea from "components/Textarea";
+import useApi from "hooks/.commons/useApi";
+import Button from "components/.commons/Button";
+import Input from "components/.commons/Input";
+import Textarea from "components/.commons/Textarea";
 import { todoItemDto } from "types/todoItemDto";
 import { amendState } from "utils/amendState";
 import "assets/css/TodoForm.css";
