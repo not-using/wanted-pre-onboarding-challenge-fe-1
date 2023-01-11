@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import TokenContext from "contexts/TokenContext";
 import Button from "components/.commons/Button";
 import LinkButton from "components/.commons/LinkButton";

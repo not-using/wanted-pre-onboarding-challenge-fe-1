@@ -1,10 +1,10 @@
-import React, { useContext, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import usePath from "hooks/.commons/usePath";
+import { usePath } from "hooks/.commons/usePath";
+import TokenContext from "contexts/TokenContext";
+import AuthForm from "components/auth/AuthForm";
 import LogoTitle from "components/.commons/LogoTitle";
 import LinkButton from "components/.commons/LinkButton";
-import AuthForm from "components/auth/AuthForm";
-import TokenContext from "contexts/TokenContext";
 import "assets/css/AuthPage.css";
 
 const AuthPage = () => {

@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import LoginButton from "components/.header/LoginButton";
 import { ReactComponent as LogoIcon } from "assets/image/logo.svg";

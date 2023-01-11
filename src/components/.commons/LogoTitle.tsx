@@ -1,4 +1,3 @@
-import React from "react";
 import { ReactComponent as Logo } from "assets/image/logo.svg";
 import "assets/css/LogoTitle.css";
 

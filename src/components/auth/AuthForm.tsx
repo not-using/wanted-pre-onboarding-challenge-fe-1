@@ -1,10 +1,10 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
-import TokenContext from "contexts/TokenContext";
-import useApi from "hooks/.commons/useApi";
-import Button from "components/.commons/Button";
-import Input from "components/.commons/Input";
+import { useApi } from "hooks/.commons/useApi";
 import { emailRegex, passwordRegex } from "constants/authRegex";
 import { amendState } from "utils/amendState";
+import TokenContext from "contexts/TokenContext";
+import Button from "components/.commons/Button";
+import Input from "components/.commons/Input";
 import "assets/css/AuthForm.css";
 
 interface authFormProps {

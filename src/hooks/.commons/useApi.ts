@@ -3,7 +3,7 @@ import { useCallback, useContext, useMemo } from "react";
 import TokenContext from "contexts/TokenContext";
 import { httpConfigType } from "types/httpConfig";
 
-const useApi = () => {
+export const useApi = () => {
   const { token, removeToken } = useContext(TokenContext);
 
   const axiosInstance = useMemo(
@@ -48,5 +48,3 @@ const useApi = () => {
 
   return { request };
 };
-
-export default useApi;

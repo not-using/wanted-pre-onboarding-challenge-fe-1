@@ -1,7 +1,6 @@
-import React from "react";
 import { Link } from "react-router-dom";
-import TodoListItem from "components/todo/TodoListItem";
 import { todoItemDto } from "types/todoItemDto";
+import TodoListItem from "components/todo/TodoListItem";
 import { ReactComponent as PlusIcon } from "assets/image/plus.svg";
 import "assets/css/TodoList.css";
 
