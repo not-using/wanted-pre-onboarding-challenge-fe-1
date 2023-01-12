@@ -14,6 +14,12 @@ export const useTodo = () => {
     [sendRequest]
   );
 
+  const createTodo = useCallback(
+    (title: string, content: string) =>
+      sendRequest("post", "/todos", { title, content }),
+    [sendRequest]
+  );
+
   const updateTodo = useCallback(
     (id: string, title: string, content: string) =>
       sendRequest("put", `/todos${id}`, { title, content }),
@@ -25,5 +31,5 @@ export const useTodo = () => {
     [sendRequest]
   );
 
-  return { getTodos, getTodoById, updateTodo, deleteTodo };
+  return { getTodos, getTodoById, createTodo, updateTodo, deleteTodo };
 };
