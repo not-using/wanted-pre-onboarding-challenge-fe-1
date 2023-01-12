@@ -5,15 +5,17 @@ import { todoItemDto } from "types/todoItemDto";
 
 export const useGetTodos = () => {
   const [todoList, setTodoList] = useState<Array<todoItemDto>>([]);
-
   const sendRequest = useRequest();
   const { data } = useQuery("getTodos", () =>
     sendRequest({ method: "get", url: "todos" })
   );
 
   useEffect(() => {
-    console.log(data);
-  }, [data]);
+    if (data?.data?.data) {
+      const newList: Array<todoItemDto> = data.data.data;
+      setTodoList(newList);
+    }
+  }, [data?.data?.data]);
 
   const addTodo = useCallback(
     (newTodo: todoItemDto) => {
