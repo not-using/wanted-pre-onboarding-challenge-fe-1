@@ -4,7 +4,7 @@
 - 구현내용 : 회원가입, 로그인 및 todo CRUD 프론트 화면 구현
 - 참여인원 : 1인 ([notusing11](https://github.com/notusing11) 프론트)
 - 기술스택 : React, CRA
-
+- 기타 문서 [위키](https://github.com/notusing11/wanted-pre-onboarding-challenge-fe-1/wiki) 참조 
 
 ### 2. 프로젝트 요구사항
  - [원티드 프리온보딩 챌린지 사전 미션](https://github.com/starkoora/wanted-pre-onboarding-challenge-fe-1-api)
