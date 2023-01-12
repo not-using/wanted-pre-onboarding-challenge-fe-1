@@ -8,10 +8,7 @@ import Input from "components/.commons/Input";
 import Textarea from "components/.commons/Textarea";
 import "assets/css/TodoForm.css";
 
-interface todoFormProps {
-  addTodo: (todo: todoItemDto) => void;
-}
-const TodoForm = ({ addTodo }: todoFormProps) => {
+const TodoForm = () => {
   const [todoItem, setTodoItem] = useState({
     title: "",
     content: "",
@@ -27,7 +24,6 @@ const TodoForm = ({ addTodo }: todoFormProps) => {
       (response: any) => {
         const newTodo: todoItemDto | undefined = response.data?.data;
         if (newTodo) {
-          addTodo(newTodo);
           navigate(`/${newTodo.id}`);
         }
       }

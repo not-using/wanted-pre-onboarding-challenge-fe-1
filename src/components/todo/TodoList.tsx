@@ -1,13 +1,17 @@
 import { Link } from "react-router-dom";
+import { useQuery } from "react-query";
+import { useRequest } from "hooks/.commons/useRequest";
 import { todoItemDto } from "types/todoItemDto";
 import TodoListItem from "components/todo/TodoListItem";
 import { ReactComponent as PlusIcon } from "assets/image/plus.svg";
 import "assets/css/TodoList.css";
 
-interface todoListProps {
-  todoList: Array<todoItemDto>;
-}
-const TodoList = ({ todoList }: todoListProps) => {
+const TodoList = () => {
+  const sendRequest = useRequest();
+  const { data } = useQuery("getTodos", () =>
+    sendRequest({ method: "get", url: "todos" })
+  );
+
   return (
     <section className="todo-list__wrapper">
       <Link to="/create" className="todo-list__add-item">
@@ -15,7 +19,7 @@ const TodoList = ({ todoList }: todoListProps) => {
         <span>추가</span>
       </Link>
       <div className="todo-list__list">
-        {todoList?.map((item: todoItemDto) => (
+        {data?.data?.map((item: todoItemDto) => (
           <TodoListItem item={item} key={item.id} />
         ))}
       </div>

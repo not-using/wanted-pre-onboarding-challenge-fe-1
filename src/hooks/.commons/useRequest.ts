@@ -18,10 +18,15 @@ export const useRequest = () => {
   );
 
   const sendRequest = useCallback(
-    ({ method, url, data }: httpConfigType) => {
+    async ({ method, url, data }: httpConfigType) => {
       if (token === null) return;
       const transferKey = method === "get" ? "params" : "data";
-      return axiosInstanceWithToken({ method, url, [transferKey]: data });
+      const response = await axiosInstanceWithToken({
+        method,
+        url,
+        [transferKey]: data,
+      });
+      return response.data;
     },
     [axiosInstanceWithToken]
   );

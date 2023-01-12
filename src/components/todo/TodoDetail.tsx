@@ -10,11 +10,7 @@ import { ReactComponent as EditIcon } from "assets/image/edit.svg";
 import { ReactComponent as TrashIcon } from "assets/image/trash.svg";
 import "assets/css/TodoDetail.css";
 
-interface todoDetailProps {
-  updateTodo: (newTodo: todoItemDto) => void;
-  removeTodo: (todoId: string) => void;
-}
-const TodoDetail = ({ updateTodo, removeTodo }: todoDetailProps) => {
+const TodoDetail = () => {
   const [editMode, setEditMode] = useState(false);
   const [itemInfo, setItemInfo] = useState<todoItemDto | undefined>(undefined);
   const [originInfo, setOriginInfo] = useState<todoItemDto | undefined>(
@@ -55,7 +51,6 @@ const TodoDetail = ({ updateTodo, removeTodo }: todoDetailProps) => {
       },
       (response: any) => {
         const newTodo = response.data?.data;
-        updateTodo(newTodo);
         setItemInfo(newTodo);
         setEditMode(false);
       }
@@ -68,7 +63,6 @@ const TodoDetail = ({ updateTodo, removeTodo }: todoDetailProps) => {
         url: `/todos${path}`,
       },
       () => {
-        removeTodo(path.slice(1));
         navigate("/");
       }
     );
