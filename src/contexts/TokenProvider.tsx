@@ -1,6 +1,7 @@
 import React, { useCallback } from "react";
 import { useNavigate } from "react-router";
 import TokenContext from "contexts/TokenContext";
+import { queryClient } from "constants/queryClient";
 
 interface tokenProviderProps {
   children: React.ReactNode;
@@ -20,6 +21,7 @@ const TokenProvider = ({ children }: tokenProviderProps) => {
 
   const removeToken = useCallback(() => {
     window.localStorage.removeItem("token");
+    queryClient.invalidateQueries();
     navigate("/auth");
   }, [navigate]);
 
