@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback } from "react";
 import { useNavigate } from "react-router";
 import TokenContext from "contexts/TokenContext";
 
@@ -7,18 +7,12 @@ interface tokenProviderProps {
 }
 
 const TokenProvider = ({ children }: tokenProviderProps) => {
-  const [token, setToken] = useState<string | null>(null);
-  const tokenInStorage = window.localStorage.getItem("token");
+  const token = window.localStorage.getItem("token");
   const navigate = useNavigate();
-
-  useEffect(() => {
-    setToken(tokenInStorage);
-  }, [tokenInStorage]);
 
   const saveToken = useCallback(
     (token: string) => {
       window.localStorage.setItem("token", token);
-      setToken(token);
       navigate("/");
     },
     [navigate]
@@ -26,7 +20,6 @@ const TokenProvider = ({ children }: tokenProviderProps) => {
 
   const removeToken = useCallback(() => {
     window.localStorage.removeItem("token");
-    setToken(null);
     navigate("/auth");
   }, [navigate]);
 
