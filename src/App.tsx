@@ -3,6 +3,7 @@ import { QueryClientProvider } from "react-query";
 import { queryClient } from "constants/queryClient";
 import TokenProvider from "contexts/TokenProvider";
 import ErrorBoundary from "components/.error/ErrorBoundary";
+import DefaultFallback from "components/.error/DefaultFallback";
 import TokenRequired from "components/.routes/TokenRequired";
 import TokenDisallowed from "components/.routes/TokenDisallowed";
 import Header from "components/.header";
@@ -14,7 +15,7 @@ const App = () => {
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>
         <TokenProvider>
-          <ErrorBoundary>
+          <ErrorBoundary fallback={<DefaultFallback />}>
             <Header />
             <Routes>
               <Route element={<TokenDisallowed />}>
