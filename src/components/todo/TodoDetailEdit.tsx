@@ -29,7 +29,10 @@ const TodoDetailEdit = ({ id, originalTodo, setEditMode }: todoEditProps) => {
   );
 
   const onSubmitEdit = () => updateMutation.mutate();
-  const onClickUndo = () => setEditedTodo(originalTodo);
+  const onClickUndo = () => {
+    setEditedTodo(originalTodo);
+    setEditMode(false);
+  };
 
   return (
     <section className="todo-detail__wrapper">
