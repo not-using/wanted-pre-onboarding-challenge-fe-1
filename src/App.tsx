@@ -2,10 +2,11 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { QueryClientProvider } from "react-query";
 import { queryClient } from "constants/queryClient";
 import TokenProvider from "contexts/TokenProvider";
+import ErrorBoundary from "components/.error/ErrorBoundary";
+import TokenRequired from "components/.router/TokenRequired";
 import Header from "components/.header";
 import AuthPage from "components/auth";
 import TodoPage from "components/todo";
-import ErrorBoundary from "components/.error/ErrorBoundary";
 
 const App = () => {
   return (
@@ -17,7 +18,9 @@ const App = () => {
             <Routes>
               <Route path="/auth" element={<AuthPage />} />
               <Route path="/signup" element={<AuthPage />} />
-              <Route path="*" element={<TodoPage />} />
+              <Route element={<TokenRequired />}>
+                <Route path="*" element={<TodoPage />} />
+              </Route>
             </Routes>
           </ErrorBoundary>
         </TokenProvider>
