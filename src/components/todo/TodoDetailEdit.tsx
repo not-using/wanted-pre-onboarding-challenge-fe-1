@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useMutation } from "react-query";
 import { useRequest } from "hooks/.commons/useRequest";
 import { todoItemDto } from "types/todoItemDto";
+import { queryClient } from "constants/queryClient";
 import { amendState } from "utils/amendState";
 import Button from "components/.commons/Button";
 import Textarea from "components/.commons/Textarea";
@@ -31,8 +32,8 @@ const TodoDetailEdit = ({ id, originalTodo, setEditMode }: todoEditProps) => {
       }),
     {
       onSuccess: () => {
-        console.log("success");
         setEditMode(false);
+        queryClient.invalidateQueries();
       },
     }
   );
