@@ -1,8 +1,9 @@
-import React, { useCallback, useContext, useEffect, useState } from "react";
-import { useApi } from "hooks/.commons/useApi";
+import React, { useContext, useEffect, useState } from "react";
+import { useMutation } from "react-query";
+import { useAuth } from "hooks/auth/useAuth";
+import TokenContext from "contexts/TokenContext";
 import { emailRegex, passwordRegex } from "constants/authRegex";
 import { amendState } from "utils/amendState";
-import TokenContext from "contexts/TokenContext";
 import Button from "components/.commons/Button";
 import Input from "components/.commons/Input";
 import "assets/css/AuthForm.css";
@@ -17,39 +18,33 @@ const AuthForm = ({ isSignIn }: authFormProps) => {
     password: "",
   });
   const [message, setMessage] = useState("");
-
   const { saveToken } = useContext(TokenContext);
-  const { request } = useApi();
+  const { login, createUser } = useAuth();
 
-  const sendRequest = useCallback(
-    (isSignIn: boolean, data: { email: string; password: string }) => {
-      request(
-        {
-          method: "post",
-          url: `users/${isSignIn ? "login" : "create"}`,
-          data,
-        },
-        (response: any) => {
-          const token = response.data?.token as string;
-          saveToken(token);
-          setMessage("");
-        },
-        (error: any) => {
-          const message = error.response.data?.details as string;
-          setMessage(message);
-        }
-      );
-    },
-    [request, saveToken]
+  const onSuccess = (response: any) => {
+    saveToken(response.token);
+  };
+
+  const loginMutation = useMutation(
+    () => login(authInfo.email, authInfo.password),
+    { onSuccess }
   );
-
-  const isEmailValid = RegExp(emailRegex).test(authInfo.email);
-  const isPasswordValid = RegExp(passwordRegex).test(authInfo.password);
+  const signUpMutation = useMutation(
+    () => createUser(authInfo.email, authInfo.password),
+    { onSuccess }
+  );
 
   const onClickSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    sendRequest(isSignIn, authInfo);
+    if (isSignIn) {
+      loginMutation.mutate();
+      return;
+    }
+    signUpMutation.mutate();
   };
+
+  const isEmailValid = RegExp(emailRegex).test(authInfo.email);
+  const isPasswordValid = RegExp(passwordRegex).test(authInfo.password);
 
   useEffect(() => {
     let validMessage = "";
