@@ -3,7 +3,8 @@ import { QueryClientProvider } from "react-query";
 import { queryClient } from "constants/queryClient";
 import TokenProvider from "contexts/TokenProvider";
 import ErrorBoundary from "components/.error/ErrorBoundary";
-import TokenRequired from "components/.router/TokenRequired";
+import TokenRequired from "components/.routes/TokenRequired";
+import TokenDisallowed from "components/.routes/TokenDisallowed";
 import Header from "components/.header";
 import AuthPage from "components/auth";
 import TodoPage from "components/todo";
@@ -16,8 +17,10 @@ const App = () => {
           <ErrorBoundary>
             <Header />
             <Routes>
-              <Route path="/auth" element={<AuthPage />} />
-              <Route path="/signup" element={<AuthPage />} />
+              <Route element={<TokenDisallowed />}>
+                <Route path="/auth" element={<AuthPage />} />
+                <Route path="/signup" element={<AuthPage />} />
+              </Route>
               <Route element={<TokenRequired />}>
                 <Route path="*" element={<TodoPage />} />
               </Route>
