@@ -1,10 +1,9 @@
-import { useCallback, useContext, useMemo } from "react";
-import { httpConfigType } from "types/httpConfig";
+import { useCallback } from "react";
 import { axiosInstanceWithToken } from "constants/axiosInstance";
 
 export const useRequest = () => {
   const sendRequest = useCallback(
-    async ({ method, url, data }: httpConfigType) => {
+    async (method: string, url: string, data?: any) => {
       const transferKey = method === "get" ? "params" : "data";
       const response = await axiosInstanceWithToken({
         method,

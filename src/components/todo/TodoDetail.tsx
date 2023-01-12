@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
-import { useRequest } from "hooks/.commons/useRequest";
+import { useTodo } from "hooks/todo/useTodo";
 import { usePath } from "hooks/.commons/usePath";
 import TodoDetailEdit from "./TodoDetailEdit";
 import TodoDetailItem from "./TodoDetailItem";
@@ -9,10 +9,8 @@ import "assets/css/TodoDetail.css";
 const TodoDetail = () => {
   const [isEditMode, setEditMode] = useState(false);
   const id = usePath();
-  const sendRequest = useRequest();
-  const { data, refetch: refresh } = useQuery("getTodo", () =>
-    sendRequest({ method: "get", url: `todos${id}` })
-  );
+  const { getTodoById } = useTodo();
+  const { data, refetch: refresh } = useQuery("getTodo", () => getTodoById(id));
   const todo = data?.data;
 
   useEffect(() => {

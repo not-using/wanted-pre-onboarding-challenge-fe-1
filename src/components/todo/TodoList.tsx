@@ -1,16 +1,14 @@
 import { Link } from "react-router-dom";
 import { useQuery } from "react-query";
-import { useRequest } from "hooks/.commons/useRequest";
+import { useTodo } from "hooks/todo/useTodo";
 import { todoItemDto } from "types/todoItemDto";
 import TodoListItem from "components/todo/TodoListItem";
 import { ReactComponent as PlusIcon } from "assets/image/plus.svg";
 import "assets/css/TodoList.css";
 
 const TodoList = () => {
-  const sendRequest = useRequest();
-  const { data } = useQuery("getTodos", () =>
-    sendRequest({ method: "get", url: "todos" })
-  );
+  const { getTodos } = useTodo();
+  const { data } = useQuery("getTodos", getTodos);
 
   return (
     <section className="todo-list__wrapper">

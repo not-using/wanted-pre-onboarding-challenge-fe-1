@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useMutation } from "react-query";
-import { useRequest } from "hooks/.commons/useRequest";
+import { useTodo } from "hooks/todo/useTodo";
 import { todoItemDto } from "types/todoItemDto";
 import { queryClient } from "constants/queryClient";
 import { amendState } from "utils/amendState";
@@ -16,20 +16,10 @@ interface todoEditProps {
 }
 
 const TodoDetailEdit = ({ id, originalTodo, setEditMode }: todoEditProps) => {
-  const [itemInfo, setItemInfo] = useState<todoItemDto>(originalTodo);
-  const recover = () => setItemInfo(originalTodo);
-
-  const sendRequest = useRequest();
-  const mutation = useMutation(
-    () =>
-      sendRequest({
-        method: "put",
-        url: `/todos${id}`,
-        data: {
-          title: itemInfo?.title,
-          content: itemInfo?.content,
-        },
-      }),
+  const [editedTodo, setEditedTodo] = useState<todoItemDto>(originalTodo);
+  const { updateTodo } = useTodo();
+  const updateMutation = useMutation(
+    () => updateTodo(id, editedTodo.title, editedTodo.content),
     {
       onSuccess: () => {
         setEditMode(false);
@@ -38,28 +28,23 @@ const TodoDetailEdit = ({ id, originalTodo, setEditMode }: todoEditProps) => {
     }
   );
 
-  const onSubmitEdit = () => {
-    mutation.mutate();
-  };
-
-  const onClickUndo = () => {
-    recover();
-  };
+  const onSubmitEdit = () => updateMutation.mutate();
+  const onClickUndo = () => setEditedTodo(originalTodo);
 
   return (
     <section className="todo-detail__wrapper">
       <Textarea
         className="todo-detail__title"
-        value={itemInfo.title}
+        value={editedTodo.title}
         onChange={(value: string) =>
-          amendState(itemInfo, setItemInfo, "title", value)
+          amendState(editedTodo, setEditedTodo, "title", value)
         }
       />
       <Textarea
         className="todo-detail__content"
-        value={itemInfo.content ?? ""}
+        value={editedTodo.content ?? ""}
         onChange={(value: string) =>
-          amendState(itemInfo, setItemInfo, "content", value)
+          amendState(editedTodo, setEditedTodo, "content", value)
         }
       />
       <div className="todo-detail__buttons">
@@ -71,7 +56,7 @@ const TodoDetailEdit = ({ id, originalTodo, setEditMode }: todoEditProps) => {
           onClick={onSubmitEdit}
         />
         <Button
-          value="삭제"
+          value="취소"
           className="no-icon"
           color="tertiary"
           onClick={onClickUndo}
