@@ -1,5 +1,5 @@
 import React from "react";
-import "../assets/css/Textarea.css";
+import "assets/css/Textarea.css";
 
 interface textareaProps {
   className?: string;
@@ -9,7 +9,7 @@ interface textareaProps {
   minLength?: number;
   maxLength?: number;
   pattern?: string;
-  onChange: (value: string) => void;
+  onChange?: (value: string) => void;
   patternErrorMessage?: string;
   autoComplete?: string;
   required?: boolean;

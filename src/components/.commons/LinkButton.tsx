@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../assets/css/LinkButton.css";
+import "assets/css/LinkButton.css";
 
 interface linkButtonProps {
   className?: string;
