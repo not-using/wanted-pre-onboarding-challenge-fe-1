@@ -12,12 +12,10 @@ const SignUpPage = () => {
   const { saveToken } = useContext(TokenContext);
   const { createUser } = useAuth();
 
-  const onSuccess = (response: any) => {
-    saveToken(response.token);
-  };
-
   const signUpMutation = useMutation(() => createUser(email, password), {
-    onSuccess,
+    onSuccess: (response: any) => {
+      saveToken(response.token);
+    },
   });
 
   return (

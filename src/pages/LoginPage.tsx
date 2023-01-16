@@ -11,12 +11,10 @@ const LoginPage = () => {
   const { saveToken } = useContext(TokenContext);
   const { login } = useAuth();
 
-  const onSuccess = (response: any) => {
-    saveToken(response.token);
-  };
-
   const loginMutation = useMutation(() => login(email, password), {
-    onSuccess,
+    onSuccess: (response: any) => {
+      saveToken(response.token);
+    },
   });
 
   return (
