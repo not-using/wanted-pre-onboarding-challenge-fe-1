@@ -29,9 +29,6 @@ const TodoDetailItem = ({
     },
   });
 
-  const onClickEdit = () => toggleEditMode();
-  const onClickDelete = () => deleteMutation.mutate();
-
   return (
     <section className="todo-detail__wrapper">
       <Textarea className="todo-detail__title" value={todo?.title} disabled />
@@ -48,14 +45,14 @@ const TodoDetailItem = ({
         <Button
           value="수정"
           color="tertiary"
-          onClick={onClickEdit}
+          onClick={toggleEditMode}
           icon={<EditIcon />}
         />
         <Button
           value="삭제"
           color="tertiary"
           icon={<TrashIcon />}
-          onClick={onClickDelete}
+          onClick={() => deleteMutation.mutate()}
         />
       </div>
     </section>

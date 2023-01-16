@@ -32,12 +32,6 @@ const TodoDetailEdit = ({
     }
   );
 
-  const onSubmitEdit = () => updateMutation.mutate();
-  const onClickUndo = () => {
-    setEditedTodo(originalTodo);
-    toggleEditMode();
-  };
-
   return (
     <section className="todo-detail__wrapper">
       <Textarea
@@ -60,13 +54,16 @@ const TodoDetailEdit = ({
           color="primary"
           isFilled
           icon={<EditIcon />}
-          onClick={onSubmitEdit}
+          onClick={() => updateMutation.mutate()}
         />
         <Button
           value="취소"
           className="no-icon"
           color="tertiary"
-          onClick={onClickUndo}
+          onClick={() => {
+            setEditedTodo(originalTodo);
+            toggleEditMode();
+          }}
         />
       </div>
     </section>
