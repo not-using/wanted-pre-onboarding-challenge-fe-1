@@ -1,7 +1,7 @@
 import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { useTodo } from "hooks/todo/useTodo";
-import { todoItemDto } from "types/todoItemDto";
+import { todoItemDto } from "types/todoTypes";
 import { queryClient } from "constants/queryClient";
 import Button from "components/.commons/Button";
 import Textarea from "components/.commons/Textarea";
@@ -24,7 +24,7 @@ const TodoDetailItem = ({
   const deleteMutation = useMutation(() => deleteTodo(id), {
     onSuccess: () => {
       console.log("TODO: 삭제 확인");
-      queryClient.invalidateQueries();
+      queryClient.invalidateQueries("getTodos");
       navigate("/");
     },
   });

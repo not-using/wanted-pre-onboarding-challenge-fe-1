@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useMutation } from "react-query";
 import { useTodo } from "hooks/todo/useTodo";
-import { todoItemDto } from "types/todoItemDto";
+import { todoItemDto } from "types/todoTypes";
 import { queryClient } from "constants/queryClient";
 import { amendState } from "utils/amendState";
 import Button from "components/.commons/Button";

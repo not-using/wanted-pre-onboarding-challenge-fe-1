@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { useTodo } from "hooks/todo/useTodo";
-import { todoItemDto } from "types/todoItemDto";
+import { todoItemDto } from "types/todoTypes";
 import { queryClient } from "constants/queryClient";
 import { amendState } from "utils/amendState";
 import Input from "components/.commons/Input";

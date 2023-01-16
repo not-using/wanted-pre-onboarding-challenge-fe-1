@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useQuery } from "react-query";
 import { useTodo } from "hooks/todo/useTodo";
-import { todoItemDto } from "types/todoItemDto";
+import { todoItemDto } from "types/todoTypes";
 import TodoListItem from "components/todo/TodoListItem";
 import { ReactComponent as PlusIcon } from "assets/image/plus.svg";
 import "assets/css/TodoList.css";
