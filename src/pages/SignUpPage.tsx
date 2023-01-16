@@ -1,11 +1,12 @@
-import LinkButton from "components/.commons/LinkButton";
-import TokenContext from "contexts/TokenContext";
-import { useAuth } from "hooks/auth/useAuth";
 import React, { useContext, useState } from "react";
 import { useMutation } from "react-query";
-import AuthForm from "./AuthForm";
+import { useAuth } from "hooks/auth/useAuth";
+import TokenContext from "contexts/TokenContext";
+import AuthWrapper from "../components/auth/AuthWrapper";
+import AuthForm from "../components/auth/AuthForm";
+import LinkButton from "components/.commons/LinkButton";
 
-const SignUp = () => {
+const SignUpPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { saveToken } = useContext(TokenContext);
@@ -20,7 +21,7 @@ const SignUp = () => {
   });
 
   return (
-    <>
+    <AuthWrapper>
       <AuthForm
         email={email}
         setEmail={setEmail}
@@ -34,8 +35,8 @@ const SignUp = () => {
         path="/signup"
         value="회원가입"
       />
-    </>
+    </AuthWrapper>
   );
 };
 
-export default SignUp;
+export default SignUpPage;
