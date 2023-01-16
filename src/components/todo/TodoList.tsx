@@ -17,7 +17,7 @@ const TodoList = () => {
         <span>추가</span>
       </Link>
       <div className="todo-list__list">
-        {data?.data?.map((item: todoItemDto) => (
+        {data?.map((item: todoItemDto) => (
           <TodoListItem item={item} key={item.id} />
         ))}
       </div>

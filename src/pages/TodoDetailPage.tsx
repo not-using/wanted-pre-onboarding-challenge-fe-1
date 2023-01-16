@@ -12,7 +12,6 @@ const TodoDetailPage = () => {
   const id = usePath();
   const { getTodoById } = useTodo();
   const { data, refetch: refresh } = useQuery("getTodo", () => getTodoById(id));
-  const todo = data?.data;
 
   useEffect(() => {
     refresh();
@@ -21,8 +20,8 @@ const TodoDetailPage = () => {
   return (
     <TodoWrapper>
       <Editable
-        onEditable={<TodoDetailEdit id={id} originalTodo={todo} />}
-        onDiseditable={<TodoDetailItem id={id} todo={todo} />}
+        onEditable={<TodoDetailEdit id={id} originalTodo={data} />}
+        onDiseditable={<TodoDetailItem id={id} todo={data} />}
       ></Editable>
     </TodoWrapper>
   );

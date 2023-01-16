@@ -5,12 +5,12 @@ export const useTodo = () => {
   const sendRequest = useRequest();
 
   const getTodos = useCallback(
-    () => sendRequest("get", "todos"),
+    () => sendRequest("get", "todos").then((data) => data.data),
     [sendRequest]
   );
 
   const getTodoById = useCallback(
-    (id: string) => sendRequest("get", `todos${id}`),
+    (id: string) => sendRequest("get", `todos${id}`).then((data) => data.data),
     [sendRequest]
   );
 
