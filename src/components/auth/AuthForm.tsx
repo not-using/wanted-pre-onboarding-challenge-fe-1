@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { UseMutationResult } from "react-query";
 import { emailRegex, passwordRegex } from "constants/authRegex";
 import Button from "components/.commons/Button";
 import Input from "components/.commons/Input";
@@ -10,7 +9,7 @@ interface authFormProps {
   setEmail: (newEmail: string) => void;
   password: string;
   setPassword: (newPassword: string) => void;
-  mutation: UseMutationResult<any, unknown, void, unknown>;
+  mutateFunction: () => void;
   submitButtonValue: string;
 }
 
@@ -19,14 +18,14 @@ const AuthForm = ({
   setEmail,
   password,
   setPassword,
-  mutation,
+  mutateFunction,
   submitButtonValue,
 }: authFormProps) => {
   const [message, setMessage] = useState("");
 
   const onClickSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    mutation.mutate();
+    mutateFunction();
   };
 
   const isEmailValid = RegExp(emailRegex).test(email);

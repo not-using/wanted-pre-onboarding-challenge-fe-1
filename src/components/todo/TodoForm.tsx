@@ -1,40 +1,21 @@
-import React, { useState } from "react";
-import { useMutation } from "react-query";
-import { useNavigate } from "react-router-dom";
-import { useTodo } from "hooks/todo/useTodo";
-import { todoItemDto } from "types/todoItemDto";
-import { queryClient } from "constants/queryClient";
+import React from "react";
+import { todoCore } from "types/todoTypes";
 import { amendState } from "utils/amendState";
 import Input from "components/.commons/Input";
 import Button from "components/.commons/Button";
 import Textarea from "components/.commons/Textarea";
 import "assets/css/TodoForm.css";
 
-const TodoForm = () => {
-  const [todo, setTodo] = useState({
-    title: "",
-    content: "",
-  });
+interface todoFromProps {
+  todo: todoCore;
+  setTodo: (newTodo: todoCore) => void;
+  mutateFunction: () => void;
+}
 
-  const { createTodo } = useTodo();
-  const createMutation = useMutation(
-    () => createTodo(todo.title, todo.content),
-    {
-      onSuccess: (response: any) => {
-        const newTodo: todoItemDto | undefined = response.data?.data;
-        if (newTodo) {
-          navigate(`/${newTodo.id}`);
-        }
-        queryClient.invalidateQueries();
-      },
-    }
-  );
-
-  const navigate = useNavigate();
-
+const TodoForm = ({ todo, setTodo, mutateFunction }: todoFromProps) => {
   const submitTodo = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    createMutation.mutate();
+    mutateFunction();
   };
 
   return (

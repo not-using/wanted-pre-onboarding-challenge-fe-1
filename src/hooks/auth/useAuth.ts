@@ -1,8 +1,10 @@
+import { useCallback, useContext } from "react";
 import { useRequest } from "hooks/.commons/useRequest";
-import { useCallback } from "react";
+import TokenContext from "contexts/TokenContext";
 
 export const useAuth = () => {
   const sendRequest = useRequest();
+  const { saveToken } = useContext(TokenContext);
 
   const login = useCallback(
     (email: string, password: string) =>
@@ -15,5 +17,9 @@ export const useAuth = () => {
       sendRequest("post", "/users/create", { email, password }),
     [sendRequest]
   );
-  return { login, createUser };
+
+  const onSuccessToAuth = (response: any) => {
+    saveToken(response.token);
+  };
+  return { login, createUser, onSuccessToAuth };
 };

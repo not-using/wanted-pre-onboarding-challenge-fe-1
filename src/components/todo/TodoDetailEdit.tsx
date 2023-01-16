@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { useMutation } from "react-query";
 import { useTodo } from "hooks/todo/useTodo";
-import { todoItemDto } from "types/todoItemDto";
-import { queryClient } from "constants/queryClient";
+import { useMutate } from "hooks/.commons/useMutate";
+import { todoItemDto } from "types/todoTypes";
 import { amendState } from "utils/amendState";
 import Button from "components/.commons/Button";
 import Textarea from "components/.commons/Textarea";
@@ -11,28 +10,25 @@ import "assets/css/TodoDetail.css";
 
 interface todoEditProps {
   id: string;
-  setEditMode: (mode: boolean) => void;
   originalTodo: todoItemDto;
+  toggleEditMode?: () => void;
 }
 
-const TodoDetailEdit = ({ id, originalTodo, setEditMode }: todoEditProps) => {
+const TodoDetailEdit = ({
+  id,
+  originalTodo,
+  toggleEditMode = () => {},
+}: todoEditProps) => {
   const [editedTodo, setEditedTodo] = useState<todoItemDto>(originalTodo);
-  const { updateTodo } = useTodo();
-  const updateMutation = useMutation(
+  const { updateTodo, onSuccessToUpdate } = useTodo();
+
+  const { mutate } = useMutate(
     () => updateTodo(id, editedTodo.title, editedTodo.content),
-    {
-      onSuccess: () => {
-        setEditMode(false);
-        queryClient.invalidateQueries();
-      },
+    () => {
+      toggleEditMode();
+      onSuccessToUpdate();
     }
   );
-
-  const onSubmitEdit = () => updateMutation.mutate();
-  const onClickUndo = () => {
-    setEditedTodo(originalTodo);
-    setEditMode(false);
-  };
 
   return (
     <section className="todo-detail__wrapper">
@@ -56,13 +52,16 @@ const TodoDetailEdit = ({ id, originalTodo, setEditMode }: todoEditProps) => {
           color="primary"
           isFilled
           icon={<EditIcon />}
-          onClick={onSubmitEdit}
+          onClick={() => mutate()}
         />
         <Button
           value="취소"
           className="no-icon"
           color="tertiary"
-          onClick={onClickUndo}
+          onClick={() => {
+            setEditedTodo(originalTodo);
+            toggleEditMode();
+          }}
         />
       </div>
     </section>

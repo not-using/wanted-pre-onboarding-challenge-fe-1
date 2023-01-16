@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { todoItemDto } from "types/todoItemDto";
+import { todoItemDto } from "types/todoTypes";
 import "assets/css/TodoListItem.css";
 
 interface todoListItemProps {

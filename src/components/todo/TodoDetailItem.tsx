@@ -1,8 +1,6 @@
-import { useMutation } from "react-query";
-import { useNavigate } from "react-router-dom";
 import { useTodo } from "hooks/todo/useTodo";
-import { todoItemDto } from "types/todoItemDto";
-import { queryClient } from "constants/queryClient";
+import { useMutate } from "hooks/.commons/useMutate";
+import { todoItemDto } from "types/todoTypes";
 import Button from "components/.commons/Button";
 import Textarea from "components/.commons/Textarea";
 import { ReactComponent as EditIcon } from "assets/image/edit.svg";
@@ -11,22 +9,15 @@ import { ReactComponent as TrashIcon } from "assets/image/trash.svg";
 interface todoDetailItemProps {
   id: string;
   todo: todoItemDto;
-  setEditMode: (mode: boolean) => void;
+  toggleEditMode?: () => void;
 }
-const TodoDetailItem = ({ id, setEditMode, todo }: todoDetailItemProps) => {
-  const { deleteTodo } = useTodo();
-  const navigate = useNavigate();
-
-  const deleteMutation = useMutation(() => deleteTodo(id), {
-    onSuccess: () => {
-      console.log("TODO: 삭제 확인");
-      queryClient.invalidateQueries();
-      navigate("/");
-    },
-  });
-
-  const onClickEdit = () => setEditMode(true);
-  const onClickDelete = () => deleteMutation.mutate();
+const TodoDetailItem = ({
+  id,
+  todo,
+  toggleEditMode = () => {},
+}: todoDetailItemProps) => {
+  const { deleteTodo, onSuccessToDelete } = useTodo();
+  const { mutate } = useMutate(() => deleteTodo(id), onSuccessToDelete);
 
   return (
     <section className="todo-detail__wrapper">
@@ -44,14 +35,14 @@ const TodoDetailItem = ({ id, setEditMode, todo }: todoDetailItemProps) => {
         <Button
           value="수정"
           color="tertiary"
-          onClick={onClickEdit}
+          onClick={toggleEditMode}
           icon={<EditIcon />}
         />
         <Button
           value="삭제"
           color="tertiary"
           icon={<TrashIcon />}
-          onClick={onClickDelete}
+          onClick={() => mutate()}
         />
       </div>
     </section>

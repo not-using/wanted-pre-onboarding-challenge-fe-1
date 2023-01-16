@@ -1,34 +1,21 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import { QueryClientProvider } from "react-query";
 import { queryClient } from "constants/queryClient";
+import Router from "routes/Router";
 import TokenProvider from "contexts/TokenProvider";
 import ErrorBoundary from "components/.error/ErrorBoundary";
 import DefaultFallback from "components/.error/DefaultFallback";
-import TokenRequired from "components/.routes/TokenRequired";
-import TokenDisallowed from "components/.routes/TokenDisallowed";
-import Header from "components/.header";
-import AuthPage from "components/auth";
-import TodoPage from "components/todo";
 
 const App = () => {
   return (
     <BrowserRouter>
-      <QueryClientProvider client={queryClient}>
-        <TokenProvider>
+      <TokenProvider>
+        <QueryClientProvider client={queryClient}>
           <ErrorBoundary fallback={<DefaultFallback />}>
-            <Header />
-            <Routes>
-              <Route element={<TokenDisallowed />}>
-                <Route path="/auth" element={<AuthPage />} />
-                <Route path="/signup" element={<AuthPage />} />
-              </Route>
-              <Route element={<TokenRequired />}>
-                <Route path="*" element={<TodoPage />} />
-              </Route>
-            </Routes>
+            <Router />
           </ErrorBoundary>
-        </TokenProvider>
-      </QueryClientProvider>
+        </QueryClientProvider>
+      </TokenProvider>
     </BrowserRouter>
   );
 };

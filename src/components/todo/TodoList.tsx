@@ -1,14 +1,14 @@
 import { Link } from "react-router-dom";
-import { useQuery } from "react-query";
 import { useTodo } from "hooks/todo/useTodo";
-import { todoItemDto } from "types/todoItemDto";
+import { useFetch } from "hooks/.commons/useFetch";
+import { todoItemDto } from "types/todoTypes";
 import TodoListItem from "components/todo/TodoListItem";
 import { ReactComponent as PlusIcon } from "assets/image/plus.svg";
 import "assets/css/TodoList.css";
 
 const TodoList = () => {
   const { getTodos } = useTodo();
-  const { data } = useQuery("getTodos", getTodos);
+  const { data } = useFetch("getTodos", getTodos);
 
   return (
     <section className="todo-list__wrapper">
@@ -17,7 +17,7 @@ const TodoList = () => {
         <span>추가</span>
       </Link>
       <div className="todo-list__list">
-        {data?.data?.map((item: todoItemDto) => (
+        {data?.map((item: todoItemDto) => (
           <TodoListItem item={item} key={item.id} />
         ))}
       </div>

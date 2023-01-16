@@ -1,30 +1,21 @@
-import { useEffect, useState } from "react";
-import { useQuery } from "react-query";
 import { useTodo } from "hooks/todo/useTodo";
+import { useFetch } from "hooks/.commons/useFetch";
 import { usePath } from "hooks/.commons/usePath";
-import TodoDetailEdit from "./TodoDetailEdit";
-import TodoDetailItem from "./TodoDetailItem";
+import TodoDetailEdit from "components/todo/TodoDetailEdit";
+import TodoDetailItem from "components/todo/TodoDetailItem";
+import Editable from "components/.commons/Editable";
 import "assets/css/TodoDetail.css";
 
 const TodoDetail = () => {
-  const [isEditMode, setEditMode] = useState(false);
   const id = usePath();
   const { getTodoById } = useTodo();
-  const { data, refetch: refresh } = useQuery("getTodo", () => getTodoById(id));
-  const todo = data?.data;
+  const { data } = useFetch("getTodo", getTodoById, id);
 
-  useEffect(() => {
-    refresh();
-  }, [id, refresh]);
-
-  return isEditMode ? (
-    <TodoDetailEdit
-      id={id}
-      originalTodo={data?.data}
-      setEditMode={setEditMode}
-    />
-  ) : (
-    <TodoDetailItem id={id} todo={todo} setEditMode={setEditMode} />
+  return (
+    <Editable
+      onEditable={<TodoDetailEdit id={id} originalTodo={data} />}
+      onDiseditable={<TodoDetailItem id={id} todo={data} />}
+    ></Editable>
   );
 };
 
