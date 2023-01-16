@@ -1,14 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useQuery } from "react-query";
 import { useTodo } from "hooks/todo/useTodo";
 import { usePath } from "hooks/.commons/usePath";
 import TodoWrapper from "components/todo/TodoWrapper";
 import TodoDetailEdit from "components/todo/TodoDetailEdit";
 import TodoDetailItem from "components/todo/TodoDetailItem";
+import Editable from "components/.commons/Editable";
 import "assets/css/TodoDetail.css";
 
 const TodoDetailPage = () => {
-  const [isEditMode, setEditMode] = useState(false);
   const id = usePath();
   const { getTodoById } = useTodo();
   const { data, refetch: refresh } = useQuery("getTodo", () => getTodoById(id));
@@ -20,15 +20,10 @@ const TodoDetailPage = () => {
 
   return (
     <TodoWrapper>
-      {isEditMode ? (
-        <TodoDetailEdit
-          id={id}
-          originalTodo={data?.data}
-          setEditMode={setEditMode}
-        />
-      ) : (
-        <TodoDetailItem id={id} todo={todo} setEditMode={setEditMode} />
-      )}
+      <Editable
+        onEditable={<TodoDetailEdit id={id} originalTodo={todo} />}
+        onDiseditable={<TodoDetailItem id={id} todo={todo} />}
+      ></Editable>
     </TodoWrapper>
   );
 };
