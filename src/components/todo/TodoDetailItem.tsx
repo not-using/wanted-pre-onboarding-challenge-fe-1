@@ -11,9 +11,13 @@ import { ReactComponent as TrashIcon } from "assets/image/trash.svg";
 interface todoDetailItemProps {
   id: string;
   todo: todoItemDto;
-  setEditMode: (mode: boolean) => void;
+  toggleEditMode?: () => void;
 }
-const TodoDetailItem = ({ id, setEditMode, todo }: todoDetailItemProps) => {
+const TodoDetailItem = ({
+  id,
+  todo,
+  toggleEditMode = () => {},
+}: todoDetailItemProps) => {
   const { deleteTodo } = useTodo();
   const navigate = useNavigate();
 
@@ -25,7 +29,7 @@ const TodoDetailItem = ({ id, setEditMode, todo }: todoDetailItemProps) => {
     },
   });
 
-  const onClickEdit = () => setEditMode(true);
+  const onClickEdit = () => toggleEditMode();
   const onClickDelete = () => deleteMutation.mutate();
 
   return (

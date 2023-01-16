@@ -11,18 +11,22 @@ import "assets/css/TodoDetail.css";
 
 interface todoEditProps {
   id: string;
-  setEditMode: (mode: boolean) => void;
   originalTodo: todoItemDto;
+  toggleEditMode?: () => void;
 }
 
-const TodoDetailEdit = ({ id, originalTodo, setEditMode }: todoEditProps) => {
+const TodoDetailEdit = ({
+  id,
+  originalTodo,
+  toggleEditMode = () => {},
+}: todoEditProps) => {
   const [editedTodo, setEditedTodo] = useState<todoItemDto>(originalTodo);
   const { updateTodo } = useTodo();
   const updateMutation = useMutation(
     () => updateTodo(id, editedTodo.title, editedTodo.content),
     {
       onSuccess: () => {
-        setEditMode(false);
+        toggleEditMode();
         queryClient.invalidateQueries();
       },
     }
@@ -31,7 +35,7 @@ const TodoDetailEdit = ({ id, originalTodo, setEditMode }: todoEditProps) => {
   const onSubmitEdit = () => updateMutation.mutate();
   const onClickUndo = () => {
     setEditedTodo(originalTodo);
-    setEditMode(false);
+    toggleEditMode();
   };
 
   return (
