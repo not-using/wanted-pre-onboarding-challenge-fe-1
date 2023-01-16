@@ -1,7 +1,6 @@
-import React, { useContext, useState } from "react";
-import { useMutation } from "react-query";
+import React, { useState } from "react";
 import { useAuth } from "hooks/auth/useAuth";
-import TokenContext from "contexts/TokenContext";
+import { useMutate } from "hooks/.commons/useMutate";
 import AuthWrapper from "../components/auth/AuthWrapper";
 import AuthForm from "../components/auth/AuthForm";
 import LinkButton from "components/.commons/LinkButton";
@@ -9,14 +8,12 @@ import LinkButton from "components/.commons/LinkButton";
 const SignUpPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { saveToken } = useContext(TokenContext);
-  const { createUser } = useAuth();
+  const { createUser, onSuccessToAuth } = useAuth();
 
-  const signUpMutation = useMutation(() => createUser(email, password), {
-    onSuccess: (response: any) => {
-      saveToken(response.token);
-    },
-  });
+  const { mutate } = useMutate(
+    () => createUser(email, password),
+    onSuccessToAuth
+  );
 
   return (
     <AuthWrapper>
@@ -25,7 +22,7 @@ const SignUpPage = () => {
         setEmail={setEmail}
         password={password}
         setPassword={setPassword}
-        mutation={signUpMutation}
+        mutateFunction={() => mutate()}
         submitButtonValue="회원가입"
       />
       <LinkButton

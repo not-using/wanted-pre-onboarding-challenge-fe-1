@@ -1,8 +1,12 @@
 import { useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import { useRequest } from "hooks/.commons/useRequest";
+import { todoItemDto } from "types/todoTypes";
+import { queryClient } from "constants/queryClient";
 
 export const useTodo = () => {
   const sendRequest = useRequest();
+  const navigate = useNavigate();
 
   const getTodos = useCallback(
     () => sendRequest("get", "todos").then((data) => data.data),
@@ -20,16 +24,42 @@ export const useTodo = () => {
     [sendRequest]
   );
 
+  const onSuccessToCreate = (response: any) => {
+    const newTodo: todoItemDto = response.data?.data;
+    if (newTodo) {
+      navigate(`/${newTodo.id}`);
+    }
+    queryClient.invalidateQueries();
+  };
+
   const updateTodo = useCallback(
     (id: string, title: string, content: string) =>
       sendRequest("put", `/todos${id}`, { title, content }),
     [sendRequest]
   );
 
+  const onSuccessToUpdate = () => {
+    queryClient.invalidateQueries();
+  };
+
   const deleteTodo = useCallback(
     (id: string) => sendRequest("delete", `todos${id}`),
     [sendRequest]
   );
 
-  return { getTodos, getTodoById, createTodo, updateTodo, deleteTodo };
+  const onSuccessToDelete = () => {
+    queryClient.invalidateQueries("getTodos");
+    navigate("/");
+  };
+
+  return {
+    getTodos,
+    getTodoById,
+    createTodo,
+    onSuccessToCreate,
+    updateTodo,
+    onSuccessToUpdate,
+    deleteTodo,
+    onSuccessToDelete,
+  };
 };

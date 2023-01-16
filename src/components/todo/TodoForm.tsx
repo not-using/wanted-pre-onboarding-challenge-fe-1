@@ -1,5 +1,4 @@
 import React from "react";
-import { UseMutationResult } from "react-query";
 import { todoCore } from "types/todoTypes";
 import { amendState } from "utils/amendState";
 import Input from "components/.commons/Input";
@@ -10,13 +9,13 @@ import "assets/css/TodoForm.css";
 interface todoFromProps {
   todo: todoCore;
   setTodo: (newTodo: todoCore) => void;
-  formMutation: UseMutationResult<any, unknown, void, unknown>;
+  mutateFunction: () => void;
 }
 
-const TodoForm = ({ todo, setTodo, formMutation }: todoFromProps) => {
+const TodoForm = ({ todo, setTodo, mutateFunction }: todoFromProps) => {
   const submitTodo = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    formMutation.mutate();
+    mutateFunction();
   };
 
   return (

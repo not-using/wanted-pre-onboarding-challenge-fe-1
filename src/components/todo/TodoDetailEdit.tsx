@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { useMutation } from "react-query";
 import { useTodo } from "hooks/todo/useTodo";
+import { useMutate } from "hooks/.commons/useMutate";
 import { todoItemDto } from "types/todoTypes";
-import { queryClient } from "constants/queryClient";
 import { amendState } from "utils/amendState";
 import Button from "components/.commons/Button";
 import Textarea from "components/.commons/Textarea";
@@ -21,14 +20,13 @@ const TodoDetailEdit = ({
   toggleEditMode = () => {},
 }: todoEditProps) => {
   const [editedTodo, setEditedTodo] = useState<todoItemDto>(originalTodo);
-  const { updateTodo } = useTodo();
-  const updateMutation = useMutation(
+  const { updateTodo, onSuccessToUpdate } = useTodo();
+
+  const { mutate } = useMutate(
     () => updateTodo(id, editedTodo.title, editedTodo.content),
-    {
-      onSuccess: () => {
-        toggleEditMode();
-        queryClient.invalidateQueries();
-      },
+    () => {
+      toggleEditMode();
+      onSuccessToUpdate();
     }
   );
 
@@ -54,7 +52,7 @@ const TodoDetailEdit = ({
           color="primary"
           isFilled
           icon={<EditIcon />}
-          onClick={() => updateMutation.mutate()}
+          onClick={() => mutate()}
         />
         <Button
           value="취소"

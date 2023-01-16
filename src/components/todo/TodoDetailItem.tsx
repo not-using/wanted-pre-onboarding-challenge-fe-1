@@ -1,8 +1,6 @@
-import { useMutation } from "react-query";
-import { useNavigate } from "react-router-dom";
 import { useTodo } from "hooks/todo/useTodo";
+import { useMutate } from "hooks/.commons/useMutate";
 import { todoItemDto } from "types/todoTypes";
-import { queryClient } from "constants/queryClient";
 import Button from "components/.commons/Button";
 import Textarea from "components/.commons/Textarea";
 import { ReactComponent as EditIcon } from "assets/image/edit.svg";
@@ -18,16 +16,8 @@ const TodoDetailItem = ({
   todo,
   toggleEditMode = () => {},
 }: todoDetailItemProps) => {
-  const { deleteTodo } = useTodo();
-  const navigate = useNavigate();
-
-  const deleteMutation = useMutation(() => deleteTodo(id), {
-    onSuccess: () => {
-      console.log("TODO: 삭제 확인");
-      queryClient.invalidateQueries("getTodos");
-      navigate("/");
-    },
-  });
+  const { deleteTodo, onSuccessToDelete } = useTodo();
+  const { mutate } = useMutate(() => deleteTodo(id), onSuccessToDelete);
 
   return (
     <section className="todo-detail__wrapper">
@@ -52,7 +42,7 @@ const TodoDetailItem = ({
           value="삭제"
           color="tertiary"
           icon={<TrashIcon />}
-          onClick={() => deleteMutation.mutate()}
+          onClick={() => mutate()}
         />
       </div>
     </section>

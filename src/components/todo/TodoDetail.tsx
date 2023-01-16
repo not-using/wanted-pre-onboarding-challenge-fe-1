@@ -1,6 +1,5 @@
-import { useEffect } from "react";
-import { useQuery } from "react-query";
 import { useTodo } from "hooks/todo/useTodo";
+import { useFetch } from "hooks/.commons/useFetch";
 import { usePath } from "hooks/.commons/usePath";
 import TodoDetailEdit from "components/todo/TodoDetailEdit";
 import TodoDetailItem from "components/todo/TodoDetailItem";
@@ -10,11 +9,7 @@ import "assets/css/TodoDetail.css";
 const TodoDetail = () => {
   const id = usePath();
   const { getTodoById } = useTodo();
-  const { data, refetch: refresh } = useQuery("getTodo", () => getTodoById(id));
-
-  useEffect(() => {
-    refresh();
-  }, [id, refresh]);
+  const { data } = useFetch("getTodo", getTodoById, id);
 
   return (
     <Editable
